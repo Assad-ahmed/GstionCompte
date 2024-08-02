@@ -1,0 +1,45 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+    <main>
+        <h4>Recherche par Acteur </h4>
+        <form class="form-inline custom-search-form mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <div class="input-group w-100">
+                <input type="text" class="form-control bg-light border-dark small" placeholder="Recherche pour..."
+                       aria-label="Search" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search fa-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+<hr>
+        <section class="py-6 text-center container-xl text-bg-primary">
+            <h1>Tableau de bord :</h1>
+            <div class="row">
+                <div class="col-xl-4 col-md-4">
+                    <div class="card custom-card bg-danger text-white mb-4 border-dark">
+                        <div class="card-body text-bg-success fs-4 bg-danger  m-4  p-4">STATUT PROCESSUS</div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6">
+                    <div class="card custom-card  bg-white text-dark mb-4 border-dark">
+                        <div class="card-body text-bg-success  bg-white fs-4 m-4  p-4">ALERTES ACTEURS</div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6">
+                    <div class="card custom-card bg-white text-dark mb-4 border-dark">
+                        <div class="card-body text-bg-success fs-4 bg-white m-4  p-4">RAPPORTS</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+    </main>
+{% endblock %}
