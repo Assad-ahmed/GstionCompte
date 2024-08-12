@@ -5011,7 +5011,7 @@ critical-role:
   changes:
     - 5.4.0
     - 5.8.0
-  label: Critical Role
+  label: Critical Tache
   search:
     terms:
       - Dungeons & Dragons
@@ -20423,7 +20423,7 @@ user-tag:
       - discount
       - label
       - person
-      - role
+      - tache
       - special
   styles:
     - solid

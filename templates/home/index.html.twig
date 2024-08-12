@@ -21,23 +21,50 @@
             <h1>Tableau de bord :</h1>
             <div class="row">
                 <div class="col-xl-4 col-md-4">
-                    <div class="card custom-card bg-danger text-white mb-4 border-dark">
-                        <div class="card-body text-bg-success fs-4 bg-danger  m-4  p-4">STATUT PROCESSUS</div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-6">
-                    <div class="card custom-card  bg-white text-dark mb-4 border-dark">
-                        <div class="card-body text-bg-success  bg-white fs-4 m-4  p-4">ALERTES ACTEURS</div>
+                    <div class="card custom-card {{ statutProcessus == 'complet' ? 'btn-success' : 'btn-danger' }} text-white mb-4 border-dark">
+                        <button  class="btn {{ statutProcessus == 'complet' ? 'btn-success' : 'btn-danger' }} card-body fs-4   m-4  p-4">STATUT PROCESSUS</button>
                     </div>
                 </div>
                 <div class="col-xl-4 col-md-6">
                     <div class="card custom-card bg-white text-dark mb-4 border-dark">
-                        <div class="card-body text-bg-success fs-4 bg-white m-4  p-4">RAPPORTS</div>
+                        <button onclick="location.href='{{ path('alerts') }}'" class="card-body text-bg-success bg-white fs-4 m-4 p-4">
+                            ALERTES ACTEURS
+                        </button>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6">
+                    <div class="card custom-card bg-white text-dark mb-4 border-dark">
+                        <button  onclick="location.href='{{ path('rapport_general') }}'" class="card-body text-bg-success fs-4 bg-white m-4  p-4">RAPPORTS</button>
                     </div>
                 </div>
             </div>
         </section>
 
+        <div class="album py-5 bg-light">
+            <div class="container">
+               <table class="table table-bordered">
+                   <thead class="text-center" style="background-color: rgb(130, 106, 251);color:#fff;">
+                     <tr>
+                         <th>Entreprise</th>
+                         <th>Modifier</th>
+                         <th>Acteur</th>
+
+                     </tr>
+                   </thead>
+                   <tbody class="text-center">
+                   {% for acteur in acteurs %}
+                     <tr>
+                         <td>{{ acteur.entreprise ? acteur.entreprise.nom }}</td>
+                         <td > <a href="#">Voir detail</a></td>
+                         <td > <a href="{{ path('acteur_detail',{id: acteur.id}) }}">Voir detail</a></td>
+                     </tr>
+
+                   {% endfor %}
+                   </tbody>
+
+               </table>
+            </div>
+        </div>
 
 
 

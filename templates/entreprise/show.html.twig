@@ -1,0 +1,13 @@
+{# templates/entreprise/show.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{ entreprise.nom }}</h1>
+    <p>Type: {{ entreprise.typeEntreprise }}</p>
+    <p>Adresse: {{ entreprise.adresse }}</p>
+    <p>NINEA: {{ entreprise.ninea }}</p>
+    <p>Responsable: {{ entreprise.responsable }}</p>
+    <p>Chiffre d'affaires: {{ entreprise.chifAffaire }}</p>
+{% endblock %}
+
+

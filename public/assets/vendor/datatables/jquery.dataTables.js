@@ -3279,7 +3279,7 @@
 			_fnDetectHeader( oSettings.aoHeader, thead );
 		}
 		
-		/* ARIA role for the rows */
+		/* ARIA tache for the rows */
 		$(thead).children('tr').attr('role', 'row');
 	
 		/* Deal with the footer - add classes if required */
@@ -5085,7 +5085,7 @@
 	{
 		var table = $(settings.nTable);
 	
-		// Add the ARIA grid role to the table
+		// Add the ARIA grid tache to the table
 		table.attr( 'role', 'grid' );
 	
 		// Scrolling from here on in

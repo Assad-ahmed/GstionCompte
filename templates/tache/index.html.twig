@@ -1,0 +1,53 @@
+{% extends 'template.html.twig' %}
+
+{% block body %}
+    <style>
+        .etat-clos {
+            background-color: green;
+            color: white;
+        }
+        .etat-en-cours {
+            background-color: yellow;
+            color: black;
+        }
+        .etat-non-commencé {
+            background-color: red;
+            color: white;
+        }
+        .etat-non-applicable {
+             background-color: white;
+             color: black;
+         }
+
+    </style>
+    <h1>Liste des Tâches</h1>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Acteur</th>
+            <th>Durée</th>
+            <th>Date de fin</th>
+            <th>Date de réalisation</th>
+            <th>État</th>
+            <th>Commentaire</th>
+        </tr>
+        </thead>
+        <tbody class="text-center">
+        {% for tache in taches %}
+            <tr>
+                <td>{{ tache.nom }}</td>
+                <td>{{ tache.acteur.nom }}</td>
+                <td>{{ tache.dureeTache }}</td>
+                <td>{{ tache.dateFin ? tache.dateFin|date('d-m-Y') : '' }}</td>
+                <td>{{ tache.dateRealisation ? tache.dateRealisation|date('d-m-Y') : '' }}</td>
+                <td class="etat-{{ tache.getEtatCouleur()|lower|replace({' ': '-'}) }}">
+                    {{ tache.getEtatCouleur()|capitalize }}
+                </td>
+                <td>{{ tache.commentaire }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+

@@ -1,0 +1,41 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}M'inscrire{% endblock %}
+
+{% block body %}
+    <div class="page-container mt-xl-5">
+        <div class="col-sm-6 mx-auto">
+            <div class="card shadow-sm">
+                <div class="card-body ">
+                    <h1 class="text-center">M'inscrire</h1>
+
+                    {{ form_errors(registrationForm) }}
+
+
+
+                    {{ form_start(registrationForm) }}
+
+                    <div class="group-form">
+                        {{ form_row(registrationForm.firstName) }}
+                        {{ form_row(registrationForm.lastName) }}
+                        {{ form_row(registrationForm.email )}}
+                        {{ form_row(registrationForm.plainPassword, {
+                            label: 'Password'
+                        }) }}
+                        {{ form_row(registrationForm.agreeTerms) }}
+                    </div>
+
+                    <button type="submit" class="btn btn-lg btn-primary btn-block mt-3">Register</button>
+                    <div class="mt-2 text-center">
+                        <a  href="{{ path('app_login') }}" >Se connecter </a>
+                    </div>
+                    {{ form_end(registrationForm) }}
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block PageTitre %}
+    Page d'inscription
+{% endblock%}

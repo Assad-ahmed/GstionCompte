@@ -1,0 +1,56 @@
+{% extends 'template.html.twig' %}
+{% block PageTitre %}
+    Rapport Général
+{% endblock %}
+{% block body %}
+
+    <h2>Liste des Entreprises</h2>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Type</th>
+            <th>Adresse</th>
+            <th>Ninea</th>
+            <th>Responsable</th>
+            <th>Chiffre d'affaire</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for entreprise in entreprises %}
+            <tr>
+                <td>{{ entreprise.nom }}</td>
+                <td>{{ entreprise.typeEntreprise }}</td>
+                <td>{{ entreprise.adresse }}</td>
+                <td>{{ entreprise.ninea }}</td>
+                <td>{{ entreprise.responsable }}</td>
+                <td>{{ entreprise.chifAffaire }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Liste des Acteurs</h2>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Rôle</th>
+            <th>Statut</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for acteur in acteurs %}
+            {% for role in acteur.roles %}
+                <tr>
+                    <td>{{ acteur.nom }}</td>
+                    <td>{{ acteur.prenom }}</td>
+                    <td>{{ role.nom }}</td>
+                    <td>{{ role.estComplet ? 'Complet' : 'Incomplet' }}</td>
+                </tr>
+            {% endfor %}
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

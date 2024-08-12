@@ -1,0 +1,43 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}Hello EntrepriseController!{% endblock %}
+
+{% block body %}
+    <a href="{{ path('edit_entreprise') }}" class="btn btn-primary m-3">Ajouter une entreprise</a>
+    <table class="table table-striped">
+        <thead class="text-center" style="background-color: rgb(130, 106, 251);color:#fff;">
+         <tr>
+             <th>Nom</th>
+             <th>Type entreprise</th>
+             <th>Nenia</th>
+             <th>Adresse</th>
+             <th>Responsable</th>
+             <th>Chiffre d'affaire</th>
+             <th>Detail</th>
+             <th>Modification</th>
+             <th>Suppression</th>
+         </tr>
+        </thead>
+        <tbody class="text-sm-center">
+
+              {% for entreprise in entreprises %}
+              <tr>
+                   <td>{{ entreprise.nom }}</td>
+                  <td>{{ entreprise.typeEntreprise ?entreprise.typeEntreprise.type  }} </td>
+                  <td>{{ entreprise.ninea }}</td>
+                  <td>{{ entreprise.adresse }}</td>
+                  <td>{{ entreprise.responsable }}</td>
+                  <td>{{ entreprise.chifAffaire|number_format(0, ',', ' ') }}  fcfa</td>
+                  <td><a href="#" class="btn btn-primary mt-2"><i class="fa-solid fa-circle-info"></i></a></td>
+                  <td><a href="{{ path('edit_entreprise',{id: entreprise.id}) }}" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                  <td><a href="{{ path('delete_entreprise', {id: entreprise.id}) }}" class="btn btn-danger"
+                         onclick="return confirm('Etes-vous sur de suprimer cet entreprise')">
+                          <i class="fa-solid fa-trash"></i></a>
+                  </td>
+              </tr>
+              {% endfor %}
+
+        </tbody>
+
+    </table>
+{% endblock %}

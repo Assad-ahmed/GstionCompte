@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Rapport des Acteurs n'ayant pas accompli leurs rôles</h1>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Rôle</th>
+            <th>Statut</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for acteur in acteursIncomplets %}
+            {% for role in acteur.roles %}
+                {% if not role.estComplet %}
+                    <tr>
+                        <td>{{ acteur.nom }}</td>
+                        <td>{{ acteur.prenom }}</td>
+                        <td>{{ role.nom }}</td>
+                        <td>{{ role.estComplet ? 'Complet' : 'Incomplet' }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

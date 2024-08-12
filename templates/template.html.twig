@@ -9,16 +9,23 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title >{% block titre %} Gestion des entreprises {% endblock %}</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('assets/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{{ asset('node_modules/select2/dist/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/card.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/print.css') }}">
+
+    <link href="{{ asset('node_modules/@fortawesome/fontawesome-free/css/all.css') }}" />
     <link
             href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
             rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('assets/css/sb-admin-2.css') }}" rel="stylesheet">
+    {% block stylesheets %}
+    {% endblock %}
 
 </head>
 
@@ -28,12 +35,12 @@
 <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion hidden-print" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
             <div class="sidebar-brand-icon rotate-n-100">
-                <img src="{{ asset('assets/images/images.png') }}" alt="logo" width="55" height="55">
+                <img src="{{ asset('assets/images/images.png') }}"  width="55" height="55">
             </div>
             <div class="sidebar-brand-text mx-3">Mor Dieng </div>
         </a>
@@ -43,7 +50,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="{{ path('app_home') }}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>
@@ -65,14 +72,14 @@
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="#">Ajouter une entreprise</a>
-                    <a class="collapse-item" href="#">Liste des entreprises</a>
+                    <a class="collapse-item" href="{{ path('edit_entreprise') }}">Ajouter une entreprise</a>
+                    <a class="collapse-item" href="{{ path('app_entreprise') }}">Liste des entreprises</a>
                 </div>
             </div>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{ path('rapport_entreprises_acteurs_incomplets') }}">
 
                   Rapports
             </a>
@@ -87,8 +94,8 @@
             <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                  data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="#">Gestionnaires</a>
-                    <a class="collapse-item" href="#">Managers</a>
+                    <a class="collapse-item" href="{{ path('liste_gestionnaire') }}">Gestionnaires</a>
+                    <a class="collapse-item" href="{{ path('liste_manager') }}">Managers</a>
 
                 </div>
             </div>
@@ -132,29 +139,17 @@
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-white small">Douglas McGee</span>
-                            <img class="img-profile rounded-circle"
-                                 src="{{ asset('assets/images/images.png') }}">
+                            <h2 class="mr-5 d-none d-lg-inline bg-primary" style="color: #dddde2; font-weight: bold; font-size:  20px;">Connexion</h2>
                         </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                              aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Profile
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Settings
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Activity Log
-                            </a>
+                            <a class="dropdown-item" href="{{ path('app_login') }}">Se connecter</a>
+                            <a class="dropdown-item" href="{{ path('app_register') }}">M'inscrire</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                            <a class="dropdown-item" href="{{ path('app_logout') }}">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Logout
+                                Déconnecter
                             </a>
                         </div>
                     </li>
@@ -166,19 +161,39 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
+                <main>
+                    <div class="container-fluid px-0 ">
+                        <h1  class="mt-4 text-center">
+                            {% block PageTitre %}
+                                <h1 style =" color: #0c63e4; font-size: 2.5em;margin-top: 20px;font-weight: bold;" class="text-center">Bienvenue au cabinet de Mor Dieng</h1>
+                            {% endblock %}
+                        </h1>
 
+                        <div class="card mb-4 ">
+                            <div class="card-body">
+                                {% for message in app.session.flashBag.get('info') %}
+                                    <div class="alert alert-info">
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                                {% for message in app.session.flashBag.get('success') %}
+                                    <div class="alert alert-success">
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                                {% for message in app.session.flashBag.get('error') %}
+                                    <div class="alert alert-danger">
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                                {% block body %}
+                                    tamplate body
+                                {% endblock %}
+                            </div>
+                        </div>
+                    </div>
+                </main>
                 <!-- Page Heading -->
-                <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">
-                      {% block PageTitre %}
-                      {% endblock %}
-                    </h1>
-                </div>
-
-               {% block body %}
-                 <p> Ma page de gestion de compte de mon entreprise</p>
-               {% endblock %}
-
             </div>
             <!-- /.container-fluid -->
 
@@ -186,7 +201,7 @@
         <!-- End of Main Content -->
 
         <!-- Footer -->
-        <footer class="sticky-footer bg-white">
+        <footer class="sticky-footer bg-white hidden-print">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
                     <span>Copyright &copy; Your Website 2021</span>
@@ -237,10 +252,14 @@
 <script src="{{ asset('assets/js/sb-admin-2.js') }}"></script>
 
 <!-- Page level plugins -->
-<script src="{{ asset('assets/vendor/chart.js/Chart.bundle.js') }}"></script>vendor/chart.js/Chart.min.js
+<script src="{{ asset('assets/vendor/chart.js/Chart.bundle.js') }}"></script>
+<script src="{{ asset('node_modules/jquery/dist/jquery.min.js') }}"></script>
+<script src="{{ asset('node_modules/select2/dist/js/select2.min.js') }}"></script>
+<script src="{{ asset('node_modules/@fortawesome/fontawesome-free/js/all.js') }}"></script>
 
 <!-- Page level custom scripts -->
-<script src="{{ asset('') }}"></script>js/demo/chart-area-demo.js
+{% block javascripts %}
+{% endblock %}
 <script src="js/demo/chart-pie-demo.js"></script>
 
 </body>
