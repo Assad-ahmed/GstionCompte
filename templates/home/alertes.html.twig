@@ -1,0 +1,28 @@
+{% extends 'template.html.twig' %}
+
+{% block body %}
+
+    <table class="table table-border " >
+        <thead class="text-center" style="background-color: rgb(130, 106, 251);color:#fff;">
+         <tr>
+             <th>Acteur</th>
+             <th>Roles (Incomplet)</th>
+         </tr>
+        </thead>
+        {% for alert in alerts %}
+          <tbody class="text-center">
+                <tr>
+                    <td> {{ alert.acteur.nom}} </td>
+                   <td>{{ alert.nom }} </td>
+               </tr>
+            {% else %}
+                <li>Aucune alerte en cours.</li>
+
+          </tbody>
+        {% endfor %}
+    </table>
+{% endblock %}
+{% block PageTitre %}
+    Alerte Acteurs
+{% endblock %}
+

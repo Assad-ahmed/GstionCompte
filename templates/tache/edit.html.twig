@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+    <div class="row mb-3 ">
+        <div class="col " >{{ form_row(form.nom) }}</div>
+    </div>
+    <div class="row">
+        <div class="col">{{ form_row(form.dateRealisation) }}</div>
+        <div class="col">{{ form_row(form.date_fin) }}</div>
+    </div>
+    <div class="col"> {{ form_rest(form) }}</div>
+    {{ form_end(form) }}
+{% endblock %}
+{% block PageTitre %}
+    Editer un role
+{% endblock %}
+
+{% block title %}
+    Editer un role
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+    </script>
+{% endblock %}
+
+

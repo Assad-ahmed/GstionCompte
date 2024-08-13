@@ -1,0 +1,34 @@
+{% extends 'template.html.twig' %}
+
+{% block title %} Liste des types entreprises!{% endblock %}
+
+{% block body %}
+    <table class="table table-striped">
+        <thead class="text-center" style="background-color: rgb(130, 106, 251);color:#fff;">
+        <tr>
+            <th>Type</th>
+            <th>Modification</th>
+            <th>Suppression</th>
+        </tr>
+        </thead>
+        <tbody class="text-sm-center">
+
+        {% for typeEntreprise in typeEntreprises %}
+            <tr>
+                <td>{{ typeEntreprise.type }}</td>
+                <td><a href="{{ path('edit_type_entreprise',{id: typeEntreprise.id}) }}" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                <td><a href="{{ path('delete_type',{id: typeEntreprise.id}) }}" class="btn btn-danger"
+                       onclick="return confirm('Etes-vous sur de suprimer ce type entreprise ')">
+                        <i class="fa-solid fa-trash"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block PageTitre %}
+    Liste des types des entrprises
+{% endblock %}
+
+

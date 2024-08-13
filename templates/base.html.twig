@@ -1,19 +1,38 @@
+{# templates/base.html.twig #}
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('bootstrap-5.0.2/dist/css/bootstrap.css') }}">
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+    {% block stylesheets %}{% endblock %}
+    {% block javascripts %}{% endblock %}
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Dashboard</a>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Liste des Entreprises</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('liste_acteur') }}">Gestion des Acteurs</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('liste_tache') }}">Liste des Rôles</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    {% block body %}{% endblock %}
+</div>
+
+<script src="{{ asset('node_modules/jquery/dist/jquery.min.js') }}"></script>
+<script src="{{ asset('bootstrap-5.0.2/js/dist/popover.js') }}"></script>
+<script src="{{ asset('bootstrap-5.0.2/dist/js/bootstrap.js') }}"></script>
+</body>
 </html>

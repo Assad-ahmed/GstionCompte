@@ -1,0 +1,24 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}Hello EntrepriseController!{% endblock %}
+
+{% block body %}
+    <a href="{{ path('edit_entreprise') }}" class="btn btn-primary m-3">Ajouter une entreprise</a>
+    <table class="table table-striped">
+        <thead class="text-center" style="background-color: rgb(130, 106, 251);color:#fff;">
+        <tr>
+            <th>Nom</th>
+            <th>Modifier</th>
+
+        </tr>
+        </thead>
+        <tbody class="text-sm-center">
+            <tr>
+                <td>{{ entreprise.nom }}</td>
+                <td><a href="{{ path('/entreprise_edit',{id: entreprise.id}) }}" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a></td>
+            </tr>
+        </tbody>
+
+    </table>
+{% endblock %}
+

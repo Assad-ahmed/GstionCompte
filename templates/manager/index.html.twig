@@ -1,0 +1,44 @@
+{% extends 'template.html.twig' %}
+
+{% block body %}
+    <table id="users" class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Roles</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for gestionnaire in gestionnaires %}
+            <tr>
+                <td>{{ gestionnaire.id }}</td>
+                <td>{{ gestionnaire.lastname }}</td>
+                <td>{{ gestionnaire.firstname }}</td>
+                <td>{{ gestionnaire.email }}</td>
+                <td>
+                    {% for role in gestionnaire.roles %}
+                        {% if role=="ROLE_USER" %}
+                            Utilisateur
+                        {% elseif role=="ROLE_GESTIONAIRE" %}
+                            Gestionnaire
+                        {% elseif role =="ROLE_MANAGER" %}
+                            Manager
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                  <td> <a href="{{ path('edit_gestionnaire',{id: gestionnaire.id}) }}" class="btn btn-dark">Modifier</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+
+
+

@@ -1,0 +1,59 @@
+
+
+.print-icon {
+    font-size: 30px; /* Taille de l'icône */
+    cursor: pointer;
+    color: #4e73df; /* Couleur de l'icône (vert par exemple) */
+    margin: 3px;
+}
+
+.print-text {
+    font-size: 20px; /* Taille du texte */
+    color: #4e73df; /* Couleur du texte (peut être ajustée) */
+    margin: 3px;
+}
+
+.print-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* Espace entre l'icône et le texte */
+}
+
+/* public/css/print.css */
+
+@media print {
+    .hidden-print,
+    .hidden-print * {
+        display: none !important;
+    }
+    body {
+        font-size: 12pt;
+    }
+
+    .container {
+        width: 100%;
+        padding: 0;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .table th, .table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    .table th {
+        background-color: #f2f2f2;
+    }
+
+    .no-print {
+        display: none;
+    }
+
+    /* Ajouter d'autres styles spécifiques si nécessaire */
+}
+

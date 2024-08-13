@@ -1,0 +1,27 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+    <div class="row">
+        <div class="col">{{ form_row(form.nom) }}</div>
+        <div class="col">{{ form_row(form.prenom) }}</div>
+    </div>
+    <div class="col"> {{ form_rest(form) }}</div>
+    {{ form_end(form) }}
+{% endblock %}
+{% block PageTitre %}
+    Editer un acteur
+{% endblock %}
+
+{% block title %}
+    Editer un acteur
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+    </script>
+{% endblock %}
+

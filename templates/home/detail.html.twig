@@ -1,0 +1,31 @@
+{% extends 'template.html.twig' %}
+
+{% block body %}
+    <table class="table table-bordered">
+        <thead class="text-center" style="background-color: rgb(130, 106, 251);color:#fff;">
+         <tr>
+             <th>Acteur</th>
+             <th>Rôles</th>
+             <th>Rôles</th>
+         </tr>
+        </thead>
+        <tbody class="text-center">
+          {% for acteur in acteurs %}
+            {% for role in acteur.roles %}
+                <tr>
+                    <td>{{ acteur.nom }} {{ acteur.prenom }}</td>
+                    <td>{{ role.nom }}</td>
+                    <td>{{ role.estComplet ? 'X' : '' }}</td>
+                </tr>
+            {% endfor %}
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+
